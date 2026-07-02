@@ -1,0 +1,115 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-ink: var(--ink);
+  --color-ember: var(--ember);
+  --font-display: "Bebas Neue", "Impact", sans-serif;
+  --font-serif-cn: "Noto Serif SC", serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+  /* Hakka Express — Bright palette: white, red, yellow */
+  --background: oklch(0.99 0.005 80);
+  --foreground: oklch(0.18 0.02 25);
+  --ink: oklch(0.14 0.015 25);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 25);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 25);
+  --primary: oklch(0.58 0.23 25);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.96 0.01 80);
+  --secondary-foreground: oklch(0.18 0.02 25);
+  --muted: oklch(0.95 0.008 80);
+  --muted-foreground: oklch(0.45 0.02 25);
+  --accent: oklch(0.85 0.18 90);
+  --accent-foreground: oklch(0.18 0.02 25);
+  --gold: oklch(0.78 0.17 80);
+  --ember: oklch(0.66 0.22 35);
+  --destructive: oklch(0.55 0.24 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.90 0.01 80);
+  --input: oklch(0.92 0.01 80);
+  --ring: oklch(0.58 0.23 25);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  body {
+    overflow-x: hidden;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 10% 0%, oklch(0.95 0.06 60 / 0.5), transparent 50%),
+      radial-gradient(circle at 90% 100%, oklch(0.92 0.08 25 / 0.35), transparent 55%);
+  }
+  h1,h2,h3,h4 { font-family: var(--font-display); letter-spacing: 0.02em; }
+}
+
+@utility text-balance { text-wrap: balance; }
+
+@utility chinese-pattern {
+  background-image:
+    linear-gradient(135deg, transparent 46%, oklch(0.82 0.16 90 / 0.18) 47%, oklch(0.82 0.16 90 / 0.18) 53%, transparent 54%),
+    linear-gradient(45deg, transparent 46%, oklch(0.82 0.16 90 / 0.12) 47%, oklch(0.82 0.16 90 / 0.12) 53%, transparent 54%);
+  background-size: 22px 22px;
+}
+
+@utility gold-text {
+  background: linear-gradient(135deg, oklch(0.92 0.14 92), oklch(0.72 0.18 70));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility glow-red {
+  box-shadow: 0 0 0 1px oklch(0.58 0.22 25 / 0.4), 0 10px 40px -8px oklch(0.58 0.22 25 / 0.5);
+}
+
+@keyframes steam {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  30% { opacity: 0.6; }
+  100% { transform: translateY(-60px) scale(1.4); opacity: 0; }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 30s linear infinite; }
+.animate-steam { animation: steam 4s ease-out infinite; }
